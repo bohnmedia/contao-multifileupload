@@ -1,0 +1,46 @@
+{
+  "name": "bohnmedia/contao-multifileupload-bundle",
+  "description": "Contao extension for multiple files in a formmular",
+  "keywords": [
+    "contao",
+    "formular",
+    "file",
+    "upload"
+  ],
+  "type": "contao-bundle",
+  "homepage": "https://www.bohnmedia.de",
+  "authors": [
+    {
+      "name": "Dennis Bohn",
+      "homepage": "https://www.bohnmedia.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "dennis.bohn@bohnmedia.de"
+  },
+  "require": {
+    "php": ">=8.1",
+    "contao/core-bundle": "^4.13"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0"
+  },
+  "conflict": {
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "BohnMedia\\ContaoMultifileuploadBundle\\": "src"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "BohnMedia\\ContaoMultifileuploadBundle\\ContaoManager\\Plugin"
+  },
+  "config": {
+    "allow-plugins": {
+      "contao/manager-plugin": true,
+      "contao-components/installer": true
+    }
+  }
+}
