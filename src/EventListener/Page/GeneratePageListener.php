@@ -12,6 +12,6 @@ class GeneratePageListener
 {
     public function __invoke(PageModel $pageModel, LayoutModel $layout, PageRegular $pageRegular): void
     {
-        $GLOBALS['TL_CSS'][] = 'bundles/contaomultifileupload/css/multifileupload.css';
+        $GLOBALS['TL_CSS'][] = 'bundles/contaomultifileupload/multifileupload.css';
     }
 }
