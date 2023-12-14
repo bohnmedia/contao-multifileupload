@@ -9,5 +9,5 @@
     <p class="error"><?= $this->getErrorAsString(); ?></p>
 <?php endif; ?>
 
-<input type="text" name="<?= $this->name ?>" id="ctrl_<?= $this->id ?>" class="text<?php if ($this->class) : ?> <?= $this->class ?><?php endif; ?>" value="<?= Contao\StringUtil::specialchars($this->value) ?>">
+<input type="file" name="<?= $this->name ?>" id="ctrl_<?= $this->id ?>" class="text<?php if ($this->class) : ?> <?= $this->class ?><?php endif; ?>" value="<?= Contao\StringUtil::specialchars($this->value) ?>">
 <?php $this->endblock(); ?>
