@@ -159,5 +159,23 @@ document.querySelectorAll(".widget-multiupload").forEach((widget) => {
     }
   });
 
+  // Create upload on drop
+  widget.addEventListener("drop", (e) => {
+    widget.classList.remove("dragover");
+    [...e.dataTransfer.files].forEach(createUpload);
+    e.preventDefault();
+    nextUpload();
+  });
+
+  widget.addEventListener("dragover", (e) => {
+    widget.classList.add("dragover");
+    e.preventDefault();
+  });
+
+  widget.addEventListener("dragleave", (e) => {
+    widget.classList.remove("dragover");
+    e.preventDefault();
+  });
+
   widget.appendChild(ulFileList);
 });
