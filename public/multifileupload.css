@@ -17,6 +17,10 @@
   width: calc(100% + 16px);
 }
 
+.widget-multiupload .filelist.empty {
+  display: none;
+}
+
 .widget-multiupload .file {
   padding: 4px 0;
   display: grid;

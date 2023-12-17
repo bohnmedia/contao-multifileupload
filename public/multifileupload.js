@@ -9,7 +9,7 @@ document.querySelectorAll(".widget-multiupload").forEach((widget) => {
   const inputHidden = widget.querySelector("input[type=hidden]");
   const REQUEST_TOKEN = form.querySelector('input[name="REQUEST_TOKEN"]').value;
   const ulFileList = document.createElement("ul");
-  ulFileList.classList.add("filelist");
+  ulFileList.classList.add("filelist", "empty");
 
   const generateFilename = (filename) => {
     var index = 0;
@@ -64,11 +64,15 @@ document.querySelectorAll(".widget-multiupload").forEach((widget) => {
 
     ulFileList.appendChild(liFile);
 
-    const removeFilename = () => {
+    const removeFile = () => {
         const index = filenames.indexOf(filename);
         if (index === -1) return;
         filenames.splice(index, 1);
         inputHidden.value = filenames.join(",");
+    }
+
+    const updateUl = () => {
+      ulFileList.classList.toggle("empty", ulFileList.children.length === 0);
     }
 
     const xhr = new XMLHttpRequest();
@@ -84,13 +88,14 @@ document.querySelectorAll(".widget-multiupload").forEach((widget) => {
     xhr.addEventListener("load", () => {
       activeUploads--;
       liFile.classList.add(xhr.status === 200 ? "done" : "error");
-      if (xhr.status !== 200) removeFilename();
+      if (xhr.status !== 200) removeFile();
+      updateUl();
       nextUpload();
     });
 
     xhr.addEventListener("abort", () => {
       activeUploads--;
-      removeFilename();
+      removeFile();
       nextUpload();
     });
 
@@ -108,7 +113,7 @@ document.querySelectorAll(".widget-multiupload").forEach((widget) => {
       xhr.open("DELETE", requestUrl, true);
       xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
       xhr.send();
-      removeFilename();
+      removeFile();
     };
 
     // Abort upload
@@ -127,6 +132,7 @@ document.querySelectorAll(".widget-multiupload").forEach((widget) => {
 
       filenames.splice(filenames.indexOf(filename), 1);
       ulFileList.removeChild(liFile);
+      updateUl();
     });
 
     pendingUploads.push(start);
@@ -140,6 +146,7 @@ document.querySelectorAll(".widget-multiupload").forEach((widget) => {
 
   // Upload files on input change
   inputFile.addEventListener("change", (e) => {
+    ulFileList.classList.remove("empty");
     [...e.target.files].forEach(createUpload);
     e.target.value = "";
     nextUpload();
