@@ -1,7 +1,12 @@
 services:
-  _defaults:
-    autoconfigure: true
-    autowire: true
+  BohnMedia\ContaoMultifileuploadBundle\EventListener\GeneratePageListener:
+    tags:
+      - { name: "contao.hook", hook: "generatePage" }
 
-  BohnMedia\ContaoMultifileuploadBundle\EventListener\:
-    resource: "../src/EventListener/*"
+  BohnMedia\ContaoMultifileuploadBundle\EventListener\PrepareFormDataListener:
+    arguments:
+      $projectDir: "%kernel.project_dir%"
+      $tmpDir: "%bohnmedia_multifileupload.tmp_dir%"
+      $session: "@session"
+    tags:
+      - { name: "contao.hook", hook: "prepareFormData", priority: 100 }

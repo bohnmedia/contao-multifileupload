@@ -1,0 +1,2 @@
+parameters:
+    bohnmedia_multifileupload.tmp_dir: "system/tmp"

@@ -1,17 +1,17 @@
 <?php
 
-namespace BohnMedia\ContaoMultifileuploadBundle\EventListener\Page;
+namespace BohnMedia\ContaoMultifileuploadBundle\EventListener;
 
-use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\PageRegular;
 use Contao\LayoutModel;
 use Contao\PageModel;
+use Contao\Template;
 
-#[AsHook('generatePage')]
 class GeneratePageListener
 {
     public function __invoke(PageModel $pageModel, LayoutModel $layout, PageRegular $pageRegular): void
     {
         $GLOBALS['TL_CSS'][] = 'bundles/contaomultifileupload/multifileupload.css';
+        $GLOBALS['TL_BODY'][] = Template::generateScriptTag('bundles/contaomultifileupload/multifileupload.js', false, null);
     }
 }
