@@ -9,7 +9,7 @@
     <p class="error"><?= $this->getErrorAsString(); ?></p>
 <?php endif; ?>
 
-<label for="ctrl_<?= $this->id ?>">Datei-Upload</label>
 <input type="file" multiple id="ctrl_<?= $this->id ?>">
+<label for="ctrl_<?= $this->id ?>">Datei-Upload</label>
 <input type="hidden" name="<?= $this->name ?>">
 <?php $this->endblock(); ?>
